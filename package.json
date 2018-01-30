@@ -24,6 +24,7 @@
     "@ngx-translate/core": "^9.0.2",
     "@ngx-translate/http-loader": "^2.0.0",
     "angular4-translate": "^1.3.5",
+    "ng2-datepicker": "^2.2.4",
     "bootstrap": "^3.3.7",
     "bootstrap3": "^3.3.5",
     "core-js": "^2.4.1",
