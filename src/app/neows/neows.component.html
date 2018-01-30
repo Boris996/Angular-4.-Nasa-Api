@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-2 contentDiv" >
+      <span><b> Start Date </b> </span>
+      <ng-datepicker [(ngModel)]="startDate"></ng-datepicker>
+    </div>
+    <div class="col-lg-2 contentDiv">
+      <span><b> End Date </b> </span>
+      <ng-datepicker [(ngModel)]="endDate"></ng-datepicker>
+    </div>
+    <div class="col-lg-3 contentDiv">
+      <button (click)="getNeows()" class="btn btn-default">N.E.O.W.S</button>
+    </div>
+
+    <div class="col-lg-1"></div>
+  </div>
+</div>
+
+
+<div class="container">
+  <input type="text" name="search" id="filterInput" [(ngModel)]="filter">
+  <table class="table table-hover">
+    <thead>
+    <tr class="success">
+      <th (click)="sort(name)"> Name </th>
+      <th (click)="sort(distance)"> Distance(km) </th>
+      <th (click)="sort(absolute_magnitude_h)"> Absolute Magnitude </th>
+      <th (click)="sort(is_potentially_hazardous)"> Is Potentially Hazardous </th>
+      <th (click)="sort(diameter)"> diameter </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ast of near_earth_objects | orderBy:key:reverse | filter:filter | paginate:{itemsPerPage:15,currentPage:p} ; let i = index">
+      <td> {{ast.name}} </td>
+      <td> {{ast.distance | number: '3.2-3'}} </td>
+      <td> {{ast.absolute_magnitude_h}} </td>
+      <td > <span> {{ast.is_potentially_hazardous}} </span> </td>
+      <td > {{ast.diameterMin | number: '1.2-3' }} - {{ast.diameterMax | number: '1.2-3'}} </td>
+    </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+  </table>
+</div>
+
+
+

@@ -1,0 +1,76 @@
+<div class="container">
+  <div *ngIf="!submitted">
+    <h2>Add new Planet in our Directory</h2>
+    <form #galaxyForm="ngForm" (ngSubmit)="onSubmit(galaxyForm.value)">
+      <div class="form-group">
+        <label for="Planetname">Planet Name</label>
+        <input type="text" class="form-control" id="Planetname" name="planetname" ngModel #name="ngModel" required>
+        <div class="alert alert-danger" [hidden]="name.valid || name.pristine">Name is required</div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="distance">Distance (mln km)</label>
+        <input type="text" class="form-control" id="distance" name="Distance" ngModel #distance="ngModel" required>
+        <div class="alert alert-danger" [hidden]="distance.valid || distance.pristine">Distance is required</div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="diameter">Diameter (km)</label>
+        <input type="text" class="form-control" id="diameter" name="Diameter" ngModel #diameter="ngModel" required>
+        <div class="alert alert-danger" [hidden]="diameter.valid || diameter.pristine">Diameter is required</div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="mail">Your Email</label>
+        <input type="text" class="form-control" id="mail" name="Mail" ngModel #mail="ngModel" required>
+        <div class="alert alert-danger" [hidden]="mail.valid || mail.pristine">Email Address is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" class="form-control" id="name" name="Name" ngModel #name="ngModel" required>
+        <div class="alert alert-danger" [hidden]="name.valid || name.pristine">Your Name  is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="galaxy">Select Galaxy</label>
+        <select class="form-control" id="galaxy" name="galaxy" ngModel #galaxy="ngModel" required>
+          <option *ngFor="let g of galaxies" [value]="g">{{ g }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="galaxy.valid || galaxy.pristine">Galaxy is required</div>
+      </div>
+      <button type="submit" class="btn btn-default" [disabled]="!galaxyForm.valid">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+<div  *ngIf="submitted">
+  <div class="container">
+    <h1>Your Planet is successfully added</h1>
+<table class="table">
+<tr>
+  <th> Planet Name</th>
+  <th> Distance (mln km)</th>
+  <th> Diameter (km)</th>
+  <th> Mail</th>
+  <th> Name</th>
+  <th> Galaxy Name</th>
+</tr>
+<tr>
+  <td> {{ form.planetname }} </td>
+  <td> {{ form.Distance }} </td>
+  <td> {{ form.Diameter }} </td>
+  <td> {{ form.Mail }} </td>
+  <td> {{ form.Name }} </td>
+  <td> {{ form.galaxy }} </td>
+</tr>
+</table>
+<button class="btn btn-default" (click)="submitted=false">Edit</button>
+  </div>
+</div>
